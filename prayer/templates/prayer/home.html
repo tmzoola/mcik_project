@@ -63,16 +63,16 @@
             <div class="row">
                 <div class="col">
                
-                    <select name="city_select" class="form-select" aria-label="Default select example">
+                    <select name="city_select" class="form-select" >
                         {% for city in cities  %}
-                        <option value="{{city}}">{{city}}</option>
+                        <option value="{{city}}" >{{city}}</option>
                         {% endfor %}
                     </select>
                     
                 </div>
             <div class="col">
             
-                <select name="month_select" class="form-select" aria-label="Default select example">
+                <select name="month_select" class="form-select" >
                     {% for month in months  %}
                         <option value="{{month.number}}">{{month.value}}</option>
                     {% endfor %}
@@ -91,9 +91,15 @@
                 <div class="col">
                     <input type="number" class="form-control" name="year" placeholder="yilni kiriting ">
                 </div>
+                <div class="col">
+                    
+                </div>
+                <div class="col">
+                    
+                </div>  
             </div>
             <div class="col">
-            <button class="btn btn-primary" type="submit">Qidirish</button>
+            <button class="btn btn-primary" id="myButton" type="submit">Qidirish</button>
         </div>
         </div>
         
@@ -124,9 +130,9 @@
                     <td>{{ item.timings.Fajr}}</td>
                     <td>{{ item.timings.Sunrise}}</td>
                     <td>{{ item.timings.Dhuhr}}</td>
-                    <td>@{{ item.timings.Asr}}</td>
-                    <td>@{{ item.timings.Maghrib}}</td>
-                    <td>@{{ item.timings.Isha}}</td>
+                    <td>{{ item.timings.Asr}}</td>
+                    <td>{{ item.timings.Maghrib}}</td>
+                    <td>{{ item.timings.Isha}}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -135,12 +141,6 @@
     </div>
 </section>
    
-
-
-
-
-
-
 
 </main>
 
@@ -165,6 +165,17 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'my_app/assets/js/main.js' %}"></script>
+{% if response %}
+{% else %}
+<script>
+    
+    window.onload = function() {
+        var button = document.getElementById('myButton');
+        button.click();
+    }
+    
+</script>
+{% endif %}
 
 </body>
 </html>
