@@ -21,13 +21,13 @@
             <ul>
               <li><a href="#">Dropdown 1</a></li>
               <li><a href="#">Dropdown 2</a></li>
-              <li><a href="{% url 'my_app:logout' %}">Logout</a></li>
+              <li><a href="{% url 'my_app:logout' %}">Chiqish</a></li>
             </ul>
           </li>
           
           {% else %}
-          <li><a href="{% url 'my_app:login' %}">Login</a></li>
-          <li><a href="{% url 'my_app:register' %}">Register</a></li>
+          <li><a href="{% url 'my_app:login' %}">Kirish</a></li>
+          <li><a href="{% url 'my_app:register' %}">Registratsiya</a></li>
           {% endif %}
         </ul>
       </nav><!-- .navbar -->

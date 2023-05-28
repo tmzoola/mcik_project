@@ -25,7 +25,6 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        print(request.POST)
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())

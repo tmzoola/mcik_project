@@ -46,10 +46,10 @@
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('{% static 'my_app/assets/img/breadcrumbs-bg.jpg' %}');">
         <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
   
-          <h2>Registratsiya</h2>
+          <h2>Kirish</h2>
           <ol>
             <li><a href="{% url 'my_app:index' %}">Bosh Sahifa</a></li>
-            <li>Registratsiya</li>
+            <li>Kirish</li>
           </ol>
   
         </div>
@@ -76,8 +76,15 @@
       </div> {% endcomment %}
     <div class="row justify-content-center ">
       <div class="col-lg-6 " data-aos="fade">
-        <form method="post" action="{% url 'my_app:register' %}" >
+        <form method="post" action="{% url 'my_app:login' %}" >
           {% csrf_token %}
+
+          {% if form.errors %}
+          <div class="alert alert-danger">
+            <strong>Error:</strong> Please input username/password correct.
+          </div>
+        {% endif %}
+
           <h3>Register</h3>
           <div class="row gy-3">
 
@@ -86,15 +93,11 @@
             </div>
 
             <div class="col-md-12 ">
-              <input type="password" class="form-control" name="password1" placeholder="Password" required>
-            </div>
-
-            <div class="col-md-12 ">
-              <input type="password" class="form-control" name="password2" placeholder="Confirm Password" required>
+              <input type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
             
           </div>
-          <button type="submit" class="btn btn-primary">Register</button>
+          <button type="submit" class="btn btn-primary">Login</button>
         </form>
       </div>
     </div><!-- End Quote Form -->
@@ -124,14 +127,3 @@
   <script src="{% static 'my_app/assets/js/main.js' %}"></script>
 </body>
 </html>
-
-
-
-
-
-<h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form>
