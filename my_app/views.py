@@ -15,6 +15,7 @@ def about(request):
 
 def register(request):
     if request.method == 'POST':
+        print(request.POST)
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
@@ -25,6 +26,7 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
+        print(request.POST)
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
@@ -36,4 +38,4 @@ def login(request):
 @login_required
 def logout(request):
     auth_logout(request)
-    return redirect('my_app:login')
+    return redirect('my_app:index')
