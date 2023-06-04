@@ -3,11 +3,18 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from .models import Iqtibos
+from charity.models import Charity
 # Create your views here.
 
 def index(request):
     context = Iqtibos.objects.filter(pk=1)
-    return render(request,'my_app/index.html',{'content':context})
+    charities = Charity.objects.all().order_by('-id')[:3]
+
+    content = {'content':context,
+               'charities':charities
+               }
+
+    return render(request,'my_app/index.html',content)
 
 
 def about(request):
