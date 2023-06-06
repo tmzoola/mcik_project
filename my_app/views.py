@@ -25,10 +25,12 @@ def about(request):
     charities = Charity.objects.all()
     charity_amount = charities.count()
     
+    
     context = {
         'person_amount':person_amount,
         'donation_amount':donation_amount,
-        'charity_amount':charity_amount
+        'charity_amount':charity_amount,
+        'donations':donations
 
     }
 
