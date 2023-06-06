@@ -3,7 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from .models import Iqtibos
-from charity.models import Charity
+from charity.models import Charity,Donation
+from django.db.models import Sum
 # Create your views here.
 
 def index(request):
@@ -18,7 +19,21 @@ def index(request):
 
 
 def about(request):
-    return render(request,'my_app/about.html')
+    donations = Donation.objects.all()
+    person_amount =  donations.count()
+    donation_amount = Donation.objects.aggregate(Sum('amount'))['amount__sum']
+    charities = Charity.objects.all()
+    charity_amount = charities.count()
+    
+    context = {
+        'person_amount':person_amount,
+        'donation_amount':donation_amount,
+        'charity_amount':charity_amount
+
+    }
+
+
+    return render(request,'my_app/about.html',context=context)
 
 def register(request):
     if request.method == 'POST':
@@ -44,3 +59,5 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('my_app:index')
+
+
