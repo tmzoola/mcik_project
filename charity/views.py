@@ -16,4 +16,4 @@ def home(request):
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
-    context = {"form": form}
+    context = {"form": form}    
