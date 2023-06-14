@@ -25,4 +25,10 @@ urlpatterns = [
     path('my_app/', include('my_app.urls')),
     path('',RedirectView.as_view(url='my_app/')),
     path('prayer/', include('prayer.urls')),
+    path('paypal/',include('paypal.standard.ipn.urls')),
+
+
+
+
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
